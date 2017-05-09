@@ -3,10 +3,12 @@
     Not yet available
   </div>
 </template>
+
 <script>
-export default {
-}
+  export default {
+  }
 </script>
+
 <style scoped>
   .waiting {
     padding: 10px;
