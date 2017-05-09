@@ -20,15 +20,15 @@ module.exports = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-eval-source-map',
   plugins: [
-  new manifestPlugin({
-    name: 'CropChat',
-    description: 'CropChat - Image Messenger Application',
-    display: 'fullscreen',
-    icon: {
-      src: path.resolve('src/assets/logo.png'),
-      sizes: [200]
-    }
-  }),
+    new manifestPlugin({
+      name: 'CropChat',
+      description: 'CropChat - Image Messenger Application',
+      display: 'fullscreen',
+      icon: {
+        src: path.resolve('src/assets/logo.png'),
+        sizes: [200]
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
