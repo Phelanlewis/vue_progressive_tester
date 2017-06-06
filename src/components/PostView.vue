@@ -22,18 +22,44 @@
 </template>
 
 <script>
+  import parse from 'xml-parser'
+
   export default {
+    data () {
+      return {
+        'catUrl': '',
+        'title': ''
+      }
+    },
+
     mounted () {
-        this.$http.get('http://thecatapi.com/api/images/get?format=xml&results_per_page=1').then(response => {
+      this.$http.get('http://thecatapi.com/api/images/get?format=xml&results_per_page=1').then(response => {
         this.catUrl = parse(response.body).root.children['0'].children['0'].children['0'].children['0'].content
       })
+    },
+
+    methods: {
+      postCat () {
+        this.$root.$firebaseRefs.cat.push(
+          {
+            'url': this.catUrl,
+            'comment': this.title,
+            'info': 'Posted by me , BRAH!!!!',
+            'created_at': -1 * new Date().getTime()
+          })
+          .then(this.$router.push('/'))
+      }
     }
   }
 </script>
 
 <style scoped>
-  .waiting {
-    padding: 10px;
-    color: #555;
+  img {
+    width: 100%;
+  }
+  .mdl-spinner {
+    position: relative;
+    top: 50%;
+    left: 50%;
   }
 </style>
